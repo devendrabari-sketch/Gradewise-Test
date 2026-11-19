@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IT Class Tests</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E📝%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#f2f8f8;--card:#fff;--ink:#1d2f3d;--muted:#566b7a;--line:#d8e8ea;--head:#0b3c5d;--c1:#1f9d94;--c2:#ff7a59;--c3:#e6a800;--c4:#7c6cf0;--c5:#3a9bdc;--soft:#f4fafa}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0e1d28;--card:#16293a;--ink:#e6f1f5;--muted:#9db4c2;--line:#27425a;--head:#8fd3ff;--c1:#3cc7bb;--c2:#ff9378;--c3:#ffd37a;--c4:#a79bff;--c5:#62b6ec;--soft:#1b3246}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Nunito",system-ui,sans-serif}
+h1,h2,h3,b.k{font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif}
+header{position:relative;overflow:hidden;background:linear-gradient(120deg,#0b3c5d,#1d7a8c 60%,#1f9d94 110%);color:#fff;padding:calc(36px + env(safe-area-inset-top,0px)) 6% 30px}
+header i{position:absolute;border-radius:50%}.a{width:150px;height:150px;right:-30px;top:-50px;background:#ffc857}.b{width:70px;height:70px;right:130px;bottom:-35px;background:#ff7a59}
+header>div{position:relative;max-width:1000px;margin:auto}header h1{margin:0 0 4px;font-size:clamp(26px,5vw,40px);line-height:1.1;font-weight:800}header p{margin:0;color:#dff3f1}
+main{max-width:1000px;margin:auto;padding:18px}
+.pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-bottom:18px}
+.pick button{font:800 18px "Baloo 2",system-ui,sans-serif;padding:10px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--head);cursor:pointer}
+.pick button[aria-pressed=true]{background:var(--head);color:var(--card);border-color:var(--head)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.tabs button,.pr{font:700 15px "Nunito",system-ui,sans-serif;padding:8px 18px;border-radius:999px;border:2px solid var(--c1);background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--c1);color:#05302c}
+.pr{margin-left:auto;border-color:var(--c2)}
+.paper{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--c1);border-radius:22px;padding:24px 26px}
+.paper h2{margin:0;font-size:24px;color:var(--head);text-align:center}.sub{text-align:center;color:var(--muted);margin:2px 0 12px}
+.meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;border-top:2px dotted var(--line);border-bottom:2px dotted var(--line);padding:8px 0;font-weight:700}
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;font-size:15px}.who span{border-bottom:2px solid var(--muted);padding-bottom:14px}
+.gi{background:var(--soft);border-left:6px solid var(--c3);border-radius:12px;padding:10px 16px;margin:12px 0}.gi b{color:var(--head)}.gi ol{margin:4px 0 0;padding-left:20px}
+.sec{margin:20px 0 6px}.sec h3{margin:0;font-size:19px;color:var(--head)}.sec h3 em{font:600 14px "Nunito",sans-serif;font-style:normal;color:var(--muted);float:right}
+.ins{margin:2px 0 8px;padding:6px 12px;background:var(--soft);border-radius:10px;border-left:5px solid var(--sec,var(--c1));font-size:15px}
+.hint{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}.hint span{padding:2px 12px;border-radius:999px;background:var(--c4);color:#fff;font-weight:700;font-size:14px}
+.q{margin:6px 0;padding-left:30px;position:relative}.q>b{position:absolute;left:0}
+.opt{display:flex;flex-wrap:wrap;gap:2px 22px;color:var(--muted)}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px}
+.sec:nth-of-type(5n+1){--sec:var(--c1)}.sec:nth-of-type(5n+2){--sec:var(--c2)}.sec:nth-of-type(5n+3){--sec:var(--c3)}.sec:nth-of-type(5n+4){--sec:var(--c4)}.sec:nth-of-type(5n){--sec:var(--c5)}
+.msg{padding:30px;text-align:center;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:18px;font-size:14px}
+@media(max-width:600px){.paper{padding:16px}.who{grid-template-columns:1fr}.mt{grid-template-columns:1fr}.sec h3 em{float:none;display:block}}
+@media print{body{background:#fff;color:#000}header,.pick,.tabs,footer{display:none}.paper{border:0;padding:0}main{padding:0}.sec{break-inside:avoid}.ins,.gi{background:#f3f3f3}.hint span{background:#555}}
+</style><script>window.TESTS = {
+ "school": "G. H. Raisoni Public School, Jalgaon",
+ "subject": "Information Technology",
+ "instr": {
+  "mcq": "Choose the correct option. In your notebook write the question number and the correct option (for example: 1. b. Delete).",
+  "tf": "Write ‘T’ for true and ‘F’ for false in your notebook.",
+  "fill": "Fill in the blanks. Write the complete sentence in your notebook.",
+  "match": "Match the items in Column A with Column B. Write the pairs in your notebook (for example: 1 – c).",
+  "rearr": "Rearrange the letters to form meaningful words. Write the correct words in your notebook.",
+  "one": "Answer in one word or one line in your notebook.",
+  "err": "Find the error and write the correct code in your notebook.",
+  "short": "Answer the following questions in your notebook. Write the question number before each answer."
+ },
+ "general": [
+  "Solve this test in your notebook. Do not write on the screen.",
+  "Write your name, class, date and the test name at the top of the page.",
+  "Write the section letter (A, B, C…) and the question number before each answer.",
+  "Write neat and complete answers. Use a pencil for diagrams and a pen for answers.",
+  "The test is for 20 marks. Check your answers before you submit your notebook."
+ ],
+ "classes": [
+  {
+   "n": 1,
+   "topic": "Keyboard and Mouse",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "30 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which key erases letters and numbers one by one to the left of the cursor?",
+         [
+          "Backspace",
+          "Delete",
+          "Alphabet"
+         ]
+        ],
+        [
+         "The action of pressing the mouse button once is called ______.",
+         [
+          "Double-click",
+          "Single-click",
+          "Scroll"
+         ]
+        ],
+        [
+         "The Spacebar key is used to give a ______ space.",
+         [
+          "Blank",
+          "New line",
+          "Erase"
+         ]
+        ],
+        [
+         "Rashmi wants to erase characters to the right of the cursor. Which key should she use?",
+         [
+          "Backspace",
+          "Delete",
+          "Enter"
+         ]
+        ],
+        [
+         "You are reading a story on the computer and want to move down the page. Which mouse action will you use?",
+         [
+          "Single-click",
+          "Double-click",
+          "Scroll"
+         ]
+        ],
+        [
+         "Which key is used to start a new line?",
+         [
+          "Enter",
+          "Spacebar",
+          "Delete"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "We use the Backspace key to erase letters to the left of the cursor.",
+        "The Enter key is used to start a new line.",
+        "Pressing the button of a mouse once is called double-clicking.",
+        "The Delete key erases letters to the left of the cursor."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "The ____ has keys for typing letters and numbers.",
+        "The ____ key is also known as the Return key.",
+        "The longest key on the keyboard is the ____ .",
+        "A ____ helps us point at and select things on the monitor.",
+        "The ____ key erases characters to the left of the cursor."
+       ],
+       "box": "Enter, Spacebar, mouse, keyboard, Backspace"
+      },
+      {
+       "t": "rearr",
+       "m": 1,
+       "items": [
+        "RKBDEOAY",
+        "LCIKCNGI",
+        "CEBSPACKA",
+        "LLOSCRGIN",
+        "TNERE"
+       ]
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "30 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which key gives a space between two words?",
+         [
+          "Spacebar",
+          "Enter",
+          "Delete",
+          "Shift"
+         ]
+        ],
+        [
+         "Which device do we use to point at things on the screen?",
+         [
+          "Mouse",
+          "Printer",
+          "Speaker"
+         ]
+        ],
+        [
+         "What happens when we press the mouse button twice quickly?",
+         [
+          "Single-click",
+          "Double-click",
+          "Scroll"
+         ]
+        ],
+        [
+         "Which key moves the cursor to the next line?",
+         [
+          "Enter",
+          "Backspace",
+          "Spacebar"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "A mouse helps us point at and select things on the monitor.",
+        "The Spacebar is the longest key on the keyboard.",
+        "The Enter key is also known as the Return key.",
+        "Scrolling moves the page up and down."
+       ]
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "Which is the longest key on the keyboard?",
+        "Which mouse action moves the page up and down?",
+        "What is the use of the Backspace key?",
+        "What is the use of the Delete key?",
+        "What is a mouse?",
+        "What is the use of the Enter key?"
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "topic": "MS Word Basics and Paint",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "30 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which option displays the name of the file?",
+         [
+          "Title bar",
+          "Close button",
+          "Ribbon"
+         ]
+        ],
+        [
+         "Which option is used to save your work for future use?",
+         [
+          "Document area",
+          "Close button",
+          "Save"
+         ]
+        ],
+        [
+         "Which is the white area where we type?",
+         [
+          "Ribbon",
+          "Document area",
+          "Title bar"
+         ]
+        ],
+        [
+         "Which component of Word helps us type our stories and letters?",
+         [
+          "Document area",
+          "Title bar",
+          "Ribbon",
+          "Tabs"
+         ]
+        ],
+        [
+         "Which keeps blinking to tell you the position of the typed text?",
+         [
+          "Title bar",
+          "Tabs",
+          "Save As",
+          "Cursor"
+         ]
+        ],
+        [
+         "Which option is used to close Word?",
+         [
+          "Save button",
+          "Close button",
+          "Ribbon",
+          "Cursor"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "Microsoft Word is an app that helps us type poems.",
+        "Word cannot be used in making posters.",
+        "When you start Word, you get a new blank page.",
+        "You can save your document by clicking the Save button on the title bar.",
+        "The cursor is a small blinking line in the document area."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "The ____ contains tabs and groups.",
+        "When you start Word, you get a new ____ page.",
+        "The ____ keeps blinking to tell the position of the typed text.",
+        "The changed name will appear on the ____ ."
+       ],
+       "box": "Title bar, Ribbon, Blank, Cursor"
+      },
+      {
+       "t": "rearr",
+       "m": 1,
+       "items": [
+        "VESA",
+        "MNEDTCUO",
+        "SCOURR",
+        "IETLT",
+        "NOBBIR"
+       ]
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "30 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which tool is used to rub out a part of a drawing in Paint?",
+         [
+          "Eraser",
+          "Brush",
+          "Text"
+         ]
+        ],
+        [
+         "Which tool fills a closed shape with colour?",
+         [
+          "Fill with colour",
+          "Pencil",
+          "Eraser"
+         ]
+        ],
+        [
+         "Which tool is used to type words in Paint?",
+         [
+          "Text tool",
+          "Pencil",
+          "Magnifier"
+         ]
+        ],
+        [
+         "Which tool makes a drawing look bigger on the screen?",
+         [
+          "Magnifier",
+          "Eraser",
+          "Text"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "Rectangular selection selects a ____ part of the drawing.",
+        "The ____ is the white area in Paint where we make colourful drawings.",
+        "A ____ is a closed figure with more than two sides.",
+        "There are ____ types of brushes in Paint."
+       ],
+       "box": "Nine, Polygon, Blank area, Square"
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "Which button is used to close the Word app?",
+        "What is Word?",
+        "What is the Ribbon in Word?",
+        "Which tool is used to pick a colour from an existing picture and use it to colour?",
+        "Which tool is used to select the entire drawing?",
+        "What is background colour?"
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "topic": "MS Word 2019",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which of these is used to create a new blank document in Word 2019?",
+         [
+          "Save",
+          "New",
+          "Close"
+         ]
+        ],
+        [
+         "To open a saved document, select ______ from the File tab.",
+         [
+          "Exit",
+          "Close",
+          "Open"
+         ]
+        ],
+        [
+         "Which option is used to zoom in and out of the document?",
+         [
+          "Status bar",
+          "Ribbon",
+          "Zoom slider"
+         ]
+        ],
+        [
+         "Amit has to submit an article for a writing competition. Which software can he use to type it?",
+         [
+          "Scratch",
+          "Paint",
+          "Excel",
+          "Word"
+         ]
+        ],
+        [
+         "Shobhit typed a wrong word. Which key(s) can help him correct it?",
+         [
+          "Delete",
+          "Enter",
+          "Backspace",
+          "Both a and c"
+         ]
+        ],
+        [
+         "Which is used to move left and right in the document?",
+         [
+          "Vertical scroll bar",
+          "Horizontal scroll bar",
+          "Status bar",
+          "Zoom slider"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "Tabs show the details of the current document.",
+        "The Ribbon is made up of tabs and groups.",
+        "Options to save, open and close a document are under the File tab.",
+        "The Save icon is present in the Status bar."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "Save, Undo and Redo buttons are present under the ____ .",
+        "____ is the shortcut key to open a document.",
+        "A word processor is an ____ software.",
+        "The ____ shows the details of the current document.",
+        "A ____ is used to enlarge and reduce the size of the window."
+       ],
+       "box": "Status bar, Quick Access Toolbar, application, Ctrl+O, Zoom slider"
+      },
+      {
+       "t": "one",
+       "m": 1,
+       "items": [
+        "I am used to cancel a command.",
+        "I am used to move left and right in the document.",
+        "I am used to reverse the action of the Undo command.",
+        "I am the key used to delete text.",
+        "Write the shortcut key to copy the selected text."
+       ],
+       "note": "Guess who am I? Write one word or key."
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which feature helps you find and correct mistakes in your writing in Word?",
+         [
+          "Spell Check",
+          "Drawing Tools",
+          "Zoom",
+          "Cut"
+         ]
+        ],
+        [
+         "What is the purpose of using shading in Word 2019?",
+         [
+          "To play a sound",
+          "To add background colour to text or paragraphs",
+          "To delete text",
+          "To print a page"
+         ]
+        ],
+        [
+         "Which feature adds decorative lines around text or page edges?",
+         [
+          "Patterns",
+          "Borders",
+          "Shading",
+          "Fonts"
+         ]
+        ],
+        [
+         "In which group are the alignment options found?",
+         [
+          "Paragraph",
+          "Clipboard",
+          "Font"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "The text highlight colour option lies in the Home tab.",
+        "We can align a paragraph in four alignment options.",
+        "In a bulleted list, each item has a sequential number in front of it.",
+        "Bold means a line under the text."
+       ]
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "What is alignment?",
+        "What is a font?",
+        "What is Bullets and Numbering?",
+        "Write the steps for copying and pasting text.",
+        "Shaurya's mother wants to open a saved Word document. Which steps should she follow?",
+        "Define the Quick Access Toolbar."
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "topic": "MS PowerPoint 2019",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which of the following is not a component of the Normal view?",
+         [
+          "Slides Pane",
+          "Notes Pane",
+          "Slide Area",
+          "Title Bar"
+         ]
+        ],
+        [
+         "Aarti wants to write notes for herself to refer to during her presentation. Which component should she use?",
+         [
+          "Control Buttons",
+          "Ribbon",
+          "Placeholder",
+          "Speaker's Notes Pane"
+         ]
+        ],
+        [
+         "When you open PowerPoint, which view is shown by default?",
+         [
+          "Slide Show View",
+          "Outline View",
+          "Normal View",
+          "Slide Sorter View"
+         ]
+        ],
+        [
+         "Jasmine wants to rearrange her slides using miniature versions of all slides. Which view should she use?",
+         [
+          "Outline View",
+          "Slide Sorter View",
+          "Normal View",
+          "Reading View"
+         ]
+        ],
+        [
+         "______ can be used to organise the content and formatting of the slides.",
+         [
+          "Notes Pane",
+          "Slide Layout",
+          "Slide Show",
+          "Outline Pane"
+         ]
+        ],
+        [
+         "______ is used to create visual representations of information such as diagrams and charts.",
+         [
+          "WordArt",
+          "SmartArt",
+          "ClipArt",
+          "Theme"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "PowerPoint does not allow us to insert online pictures in our slides.",
+        "The Title bar is located at the bottom of the PowerPoint window.",
+        "The shortcut to insert a new slide is Ctrl + N.",
+        "The first slide that opens by default is a comparison slide."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "PowerPoint allows you to create interesting and exciting ____ .",
+        "____ view is used to create new presentations.",
+        "A single page of the presentation is called a ____ .",
+        "____ includes font, font size, font colour, etc.",
+        "____ are the dotted-line containers on slide layouts that hold content."
+       ],
+       "box": "Formatting, Backstage, Placeholders, Presentations, Slide"
+      },
+      {
+       "t": "match",
+       "m": 1,
+       "items": [
+        [
+         "Slides pane",
+         "Shows thumbnails of all slides"
+        ],
+        [
+         "Notes pane",
+         "Used to write speaker notes"
+        ],
+        [
+         "Slide Sorter view",
+         "Used to rearrange slides"
+        ],
+        [
+         "Layout",
+         "Arrangement of text and graphics on a slide"
+        ],
+        [
+         "Themes",
+         "Quick way to change layout and background"
+        ]
+       ]
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "To start PowerPoint 2019, click the Start button on the ______ .",
+         [
+          "Title bar",
+          "Status bar",
+          "Task bar"
+         ]
+        ],
+        [
+         "Which of these displays the slides as thumbnails?",
+         [
+          "Outline pane",
+          "Slides pane",
+          "Work area"
+         ]
+        ],
+        [
+         "Which of these is presentation-making software?",
+         [
+          "Paint",
+          "PowerPoint 2019",
+          "Word 2019"
+         ]
+        ],
+        [
+         "The arrangement of text, graphics and images in a slide is known as ______ .",
+         [
+          "Animation",
+          "ClipArt",
+          "Layout"
+         ]
+        ],
+        [
+         "Which pane shows the notes the speaker uses?",
+         [
+          "Notes pane",
+          "Slides pane",
+          "Outline pane"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "The title bar is located at the ____ of the MS PowerPoint window.",
+        "A ____ is a collection of slides.",
+        "____ are an in-built feature that offers a quick way of changing the layout and background."
+       ],
+       "box": "presentation, Themes, top"
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "What is the purpose of the Slides pane in PowerPoint?",
+        "Write the steps to insert new slides into a presentation.",
+        "State any one difference between Slide layout and Placeholders.",
+        "Write the steps to save a presentation.",
+        "Write the steps to change the background of the slides.",
+        "What is a presentation?"
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "topic": "MS Excel",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "What is the process of highlighting specific cells or a range of cells called?",
+         [
+          "Deleting Cell Content",
+          "Selecting Cells",
+          "Formatting Cells",
+          "Moving Cells"
+         ]
+        ],
+        [
+         "Which feature lets you reverse an action or redo a step you have undone?",
+         [
+          "AutoFill",
+          "Undo/Redo",
+          "Cut/Paste",
+          "Zoom"
+         ]
+        ],
+        [
+         "How do you select a column in Excel?",
+         [
+          "By clicking on the column header",
+          "By clicking on the first cell of the column",
+          "By clicking on the row header",
+          "By clicking on the last cell of the column"
+         ]
+        ],
+        [
+         "Which is the top left cell in the cell range B4:G9?",
+         [
+          "B4",
+          "G9",
+          "B9",
+          "G4"
+         ]
+        ],
+        [
+         "Which key is used to select multiple cells?",
+         [
+          "Shift",
+          "Ctrl",
+          "Alt"
+         ]
+        ],
+        [
+         "Under the Home tab, which command is used to delete a cell?",
+         [
+          "Remove",
+          "Autofill",
+          "Delete",
+          "Copy"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "You cannot select multiple cells in Excel.",
+        "Alt + A is the shortcut to select the entire worksheet.",
+        "You can reverse an action by clicking the Undo command.",
+        "Clicking on the row header will select the entire column."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "A ____ border appears around the active cell.",
+        "To select a column, place the mouse pointer on the ____ header.",
+        "Time and date can be entered in a cell from the ____ group under the Home tab.",
+        "To select the whole worksheet, click the ____ .",
+        "The Fill button is in the ____ group under the Home tab."
+       ],
+       "box": "Editing, green, Select All triangle, Column, Number"
+      },
+      {
+       "t": "match",
+       "m": 1,
+       "items": [
+        [
+         "Enter key",
+         "Moves the active cell one row down"
+        ],
+        [
+         "Shift + Enter keys",
+         "Moves the active cell one row up"
+        ],
+        [
+         "Tab key",
+         "Moves the active cell one column to the right"
+        ],
+        [
+         "Ctrl + Home keys",
+         "Moves the active cell to the first cell, A1"
+        ],
+        [
+         "Ctrl + A keys",
+         "Selects the entire worksheet"
+        ]
+       ]
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "one",
+       "m": 1,
+       "items": [
+        "What is the keyboard shortcut to select the whole worksheet?",
+        "Which keys are used to select a range of cells?",
+        "Which key is used to select multiple cells?",
+        "What is the keyboard shortcut to apply the default time format?"
+       ],
+       "note": "Answer in one or two words."
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "To select a cell, click on the cell.",
+        "The default format of time is hours:minutes:seconds AM/PM in Excel.",
+        "By using the Autofill feature, only number series can be filled.",
+        "In Excel, you cannot move the data."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "To select a ____ , click on the top left cell and drag to the bottom right cell.",
+        "The Redo command works only when you have given an ____ command.",
+        "To fill a series using Autofill, click the ____ option under the Fill command.",
+        "The Cut command is present under the ____ tab."
+       ],
+       "box": "Undo, Series, Home, Range"
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "Write the steps to delete a row in Excel.",
+        "Rita has entered the date 6/11/2024 in Excel. What steps should she take to change its format?",
+        "Mohan wants to select the cell range C3:F10 using only the keyboard. What steps should he follow?",
+        "Write the steps to move data in Excel."
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "topic": "HTML5, CSS and Social Networking",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which of the following is a container tag in HTML5?",
+         [
+          "<P> tag",
+          "<BR> tag",
+          "<IMG> tag",
+          "<HR> tag"
+         ]
+        ],
+        [
+         "Which part of an HTML5 document defines the title of the web page?",
+         [
+          "Head",
+          "Body",
+          "Table",
+          "Form"
+         ]
+        ],
+        [
+         "Which language is used to create web pages?",
+         [
+          "HTML",
+          "English",
+          "Gothic",
+          "None of these"
+         ]
+        ],
+        [
+         "What is the primary purpose of hypertext?",
+         [
+          "Displays static information",
+          "Creates dynamic animations",
+          "Links web pages",
+          "Enhances text readability"
+         ]
+        ],
+        [
+         "In body{background-color:#AAFFBB;}, what does #AAFFBB represent?",
+         [
+          "Colour name",
+          "Hexadecimal code for colour",
+          "Just a text",
+          "None of the above"
+         ]
+        ],
+        [
+         "Anita wants to change the look of all web pages of a website. Which CSS method will you suggest?",
+         [
+          "Inline CSS",
+          "Internal CSS",
+          "External CSS",
+          "Not possible in CSS"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "HTML5 was released in 2010.",
+        "HTML is a case-sensitive language.",
+        "Tag names in HTML should not contain spaces.",
+        "In CSS, a semicolon is used to separate one property-value pair from another."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "HTML is a ____ language that describes the structure of a web page.",
+        "<BR> tag is an example of an ____ tag.",
+        "The ____ section contains the information shown on the web page.",
+        "An ____ style is used to apply a unique style to a single element.",
+        "The ____ property is used to set an image as the background of a web page."
+       ],
+       "box": "Markup, Body, Inline, Background-image, Empty"
+      },
+      {
+       "t": "one",
+       "m": 1,
+       "items": [
+        "The latest version of HTML",
+        "A language that uses special symbols called tags to mark up a text document",
+        "A combination of opening tag, content and closing tag",
+        "A property that gives additional information about a tag",
+        "Points to an HTML tag to which a style will be applied"
+       ],
+       "note": "Answer in one word."
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "What is the primary purpose of social networking sites?",
+         [
+          "To promote isolation",
+          "To discourage social interaction",
+          "To create and maintain personal and professional relationships online",
+          "To limit communication between users"
+         ]
+        ],
+        [
+         "Which of the following is a handy feature to chat with people?",
+         [
+          "Facebook Messenger",
+          "YouTube",
+          "Blogger",
+          "LinkedIn"
+         ]
+        ],
+        [
+         "Messages sent on X are known as ______ .",
+         [
+          "Reels",
+          "Blogs",
+          "Posts",
+          "SMS"
+         ]
+        ],
+        [
+         "Amit wants to video call friends and family. Which application would you suggest?",
+         [
+          "Skype",
+          "YouTube",
+          "Quora",
+          "None of these"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "You can create groups on Facebook.",
+        "Quora is a platform to ask questions.",
+        "With e-banking, you can transfer funds easily from one account to another.",
+        "COD stands for Cash on Demand."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "The idea of cloud computing was introduced by the scientist ____ .",
+        "OneDrive was launched by ____ in 2007.",
+        "____ is the act of writing and maintaining a blog.",
+        "The term podcast is made up of the words ____ and broadcast."
+       ],
+       "box": "iPod, Microsoft, John McCarthy, Blogging"
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "What does HTML stand for?",
+        "Riya wrote the opening tags in uppercase and the closing tags in lowercase. Will she get an error in the web browser? Why or why not?",
+        "Write the code to include the file mystyle.css in an HTML web page.",
+        "Define Quora."
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "topic": "Google Apps",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "What is Google primarily known for?",
+         [
+          "Online shopping",
+          "Internet search and related services",
+          "Playing video games",
+          "Cooking recipes"
+         ]
+        ],
+        [
+         "Which of the following is NOT an app developed by Google?",
+         [
+          "Chrome",
+          "Word",
+          "Gmail",
+          "YouTube"
+         ]
+        ],
+        [
+         "What is the main purpose of Google Docs?",
+         [
+          "Editing and sharing photos",
+          "Creating and collaborating on documents online",
+          "Playing music",
+          "Drawing pictures"
+         ]
+        ],
+        [
+         "Which app is used to make presentations?",
+         [
+          "Gmail",
+          "YouTube",
+          "Slides",
+          "Sheets"
+         ]
+        ],
+        [
+         "We use the Set Permissions option in Google Sheets to ______ .",
+         [
+          "Protect Sheets",
+          "Delete Sheets",
+          "Withdraw Protection",
+          "All of these"
+         ]
+        ],
+        [
+         "Nayra and Soham want to prepare a group project report. Which Google app will you suggest?",
+         [
+          "Google Docs",
+          "Google Drive",
+          "Google Maps",
+          "None of these"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "An app is a short form of application.",
+        "Google allows us to search by voice.",
+        "Gmail is one of the paid mailing apps.",
+        "Multiple users can work on the same spreadsheet simultaneously in Google Sheets."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "To access apps, you require a ____ browser-based interface.",
+        "Google ____ is a cloud-based storage service.",
+        "____ is a video sharing app.",
+        "____ view shows the satellite image of the selected region.",
+        "Google ____ is a digital navigation program."
+       ],
+       "box": "Satellite, Maps, Drive, YouTube, web"
+      },
+      {
+       "t": "match",
+       "m": 1,
+       "items": [
+        [
+         "Google Maps",
+         "Gives you 2-3 route options for your destination"
+        ],
+        [
+         "Google Drive",
+         "Stores files and folders"
+        ],
+        [
+         "Google Docs",
+         "Provides features to create and edit documents"
+        ],
+        [
+         "Google Sheets",
+         "Facilitates work on spreadsheets"
+        ],
+        [
+         "YouTube",
+         "The second largest search engine"
+        ]
+       ]
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "When was the App Store launched by Apple?",
+         [
+          "2006",
+          "2008",
+          "2004",
+          "2007"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "In December 2019, Sundar Pichai became the CEO of ____ .",
+        "Encryption is the process of ____ a message or file so that only authorised people can access it.",
+        "The ____ icon allows you to save a copy of the file on your device.",
+        "____ allows multiple users to work on the same document in real time.",
+        "Changes made in Google Docs are ____ automatically when working online."
+       ],
+       "box": "Alphabet, encrypting, Download, Collaboration, saved"
+      },
+      {
+       "t": "one",
+       "m": 1,
+       "items": [
+        "I am the online version of Microsoft PowerPoint developed by Google in 2006.",
+        "I am a video sharing application where users can upload, share, comment on and like videos.",
+        "I am a spreadsheet application introduced by Google on 9 March 2006.",
+        "I am a cloud-based storage service that stores photos, videos, PDFs and Office files."
+       ],
+       "note": "Guess who am I? Write one name."
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "Write a short note on Gmail.",
+        "Write any two features of Google Maps.",
+        "Write the steps to create a new sheet in Google Sheets.",
+        "How much data can you store in Google Drive? Is there any way to increase the storage limit?",
+        "State any two benefits of Google Docs."
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "topic": "HTML: Links, Media and Forms",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which HTML tag is used to create a hyperlink?",
+         [
+          "<img>",
+          "<a>",
+          "<p>",
+          "<br>"
+         ]
+        ],
+        [
+         "What type of content can be embedded using the <video> and <audio> tags?",
+         [
+          "Images",
+          "Video and audio",
+          "Only text",
+          "Tables"
+         ]
+        ],
+        [
+         "What does the target=\"_blank\" attribute in an <a> tag do?",
+         [
+          "Opens the link in a new tab or window",
+          "Closes the current page",
+          "Redirects to a different URL",
+          "Disables the link"
+         ]
+        ],
+        [
+         "Which HTML tag is used to create a frame in a web page?",
+         [
+          "<FRAME>",
+          "<IFRAME>",
+          "<SECTION>",
+          "<DIV>"
+         ]
+        ],
+        [
+         "What does the alt attribute in an <img> tag provide?",
+         [
+          "The image's caption",
+          "A description of the image",
+          "The image's width and height",
+          "The image's file format"
+         ]
+        ],
+        [
+         "Which tag is used to create a form boundary on a web page?",
+         [
+          "<SELECT>",
+          "<FORM>",
+          "<INPUT>",
+          "<TEXTAREA>"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "MP4, MP3 and Ogg are file formats supported to embed video and audio.",
+        "The src attribute in the <img> tag specifies the source (URL) of the image to be displayed.",
+        "The CSS property a:active is used to set the style on a link which the user has visited.",
+        "<IMG SRC=\"lotus1.jpg\" HEIGHT=\"200\" BREADTH=\"500\"> is a correct tag."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "____ is a single-line text input that masks each character as it is entered.",
+        "The ____ attribute specifies the method the form will use to send the values entered into form fields.",
+        "The purpose of the ____ attribute is to specify the kind of field we want to create.",
+        "The ____ button clears all the data entered in a form.",
+        "We can create a combo box using the ____ and OPTION tags."
+       ],
+       "box": "Password, Reset, type, method, select"
+      },
+      {
+       "t": "err",
+       "m": 1,
+       "items": [
+        "<IMG SRC=\"lily.jpg\" BORDER=\"right\">",
+        "<A HREF=\"lily.jpg\" TARGET=\"blank\"> Link Text </A>",
+        "<A HREF=#left> Section heading </A>"
+       ],
+       "note": "Find the error in each HTML code and rewrite it correctly."
+      },
+      {
+       "t": "one",
+       "m": 1,
+       "items": [
+        "Write the CSS selector that sets the style for an unvisited link.",
+        "Which attribute identifies the source of media in the <audio> and <video> tags?"
+       ],
+       "note": "Answer in one word or one line."
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which target value opens the linked page in the current window or tab?",
+         [
+          "_blank",
+          "_parent",
+          "_top",
+          "_self"
+         ]
+        ],
+        [
+         "Which selector sets the style on a link when it is clicked?",
+         [
+          "a:active",
+          "a:hover",
+          "a:link",
+          "a:visited"
+         ]
+        ],
+        [
+         "Which tag creates a multiline text box that accepts long text values?",
+         [
+          "<INPUT>",
+          "<TEXTAREA>",
+          "<SELECT>",
+          "<FORM>"
+         ]
+        ],
+        [
+         "Which attribute specifies the identity of a field on the web page?",
+         [
+          "VALUE",
+          "NAME",
+          "TYPE",
+          "TEXT"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "The hyperlink and the ____ section appear on the same web page.",
+        "a:link is used to set the style for an ____ link.",
+        "____ properties allow us to display links as buttons.",
+        "To add media, we set the ____ attribute to identify the media source."
+       ],
+       "box": "Unvisited, SRC, CSS, Linked"
+      },
+      {
+       "t": "short",
+       "m": 2,
+       "items": [
+        "Write the CSS properties that can change the look and style of hyperlinks.",
+        "Explain the attributes of the <A> tag.",
+        "Write the code to create a checkbox control.",
+        "Write the code to create a radio button control.",
+        "What is the <INPUT> tag?",
+        "What is a Combo Box?"
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "topic": "IT-ITeS Industry and Electronic Spreadsheet",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Raw facts and figures that are not yet processed are called ______ .",
+         [
+          "Information",
+          "Data",
+          "Software",
+          "Output"
+         ]
+        ],
+        [
+         "BPO stands for ______ .",
+         [
+          "Business Process Outsourcing",
+          "Business Product Operation",
+          "Basic Process Organisation",
+          "Bulk Product Order"
+         ]
+        ],
+        [
+         "A company with its headquarters abroad that operates in many countries is a ______ .",
+         [
+          "ISP",
+          "GIC",
+          "MNC",
+          "BPM"
+         ]
+        ],
+        [
+         "The spreadsheet application of LibreOffice is ______ .",
+         [
+          "Writer",
+          "Impress",
+          "Calc",
+          "Base"
+         ]
+        ],
+        [
+         "The result of =4+5*3 is ______ .",
+         [
+          "27",
+          "19",
+          "24",
+          "12"
+         ]
+        ],
+        [
+         "D7 has =SUM(D2:D6). When dragged right to E7 it becomes ______ .",
+         [
+          "=SUM(D2:D6)",
+          "=SUM(E2:E6)",
+          "=SUM(E3:E7)",
+          "=SUM(D3:D7)"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "ITeS is also known as web-enabled or remote services.",
+        "A GIC serves outside clients.",
+        "A formula in Calc begins with the = sign.",
+        "By default, text labels are right aligned in a cell."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "Each book in a library is tracked using a ____ .",
+        "____ uses magnetic fields and radio waves to image internal organs.",
+        "____ moves the cell pointer to cell A1.",
+        "The ____ is the small black square at the bottom-right corner of the selected cell.",
+        "A collection of sheets is called a ____ ."
+       ],
+       "box": "barcode, MRI, Ctrl+Home, fill handle, workbook"
+      },
+      {
+       "t": "match",
+       "m": 1,
+       "items": [
+        [
+         "CAT",
+         "Makes detailed 3D images of body parts"
+        ],
+        [
+         "MRI",
+         "Uses magnetic fields and radio waves"
+        ],
+        [
+         "ECG",
+         "Records the heartbeat as a graph"
+        ],
+        [
+         "EEG",
+         "Records electrical activity of the brain"
+        ],
+        [
+         "CAD",
+         "Computer Aided Design"
+        ]
+       ]
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "Which function counts cells that contain numbers?",
+         [
+          "SUM",
+          "COUNT",
+          "MAX",
+          "MIN"
+         ]
+        ],
+        [
+         "Which reference stays fixed in both column and row?",
+         [
+          "$A$1",
+          "A$1",
+          "$A1",
+          "A1"
+         ]
+        ],
+        [
+         "Which chart is best for showing parts of a whole as percentages?",
+         [
+          "Pie",
+          "Line",
+          "Bar",
+          "Scatter"
+         ]
+        ],
+        [
+         "An online platform to manage teaching and learning is a(n) ______ .",
+         [
+          "LMS",
+          "ATM",
+          "MRI",
+          "GIC"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "one",
+       "m": 1,
+       "items": [
+        "=4+5*3",
+        "=(4+5)*3",
+        "=5*4^2",
+        "=2^5"
+       ],
+       "note": "Evaluate each formula and write the result."
+      },
+      {
+       "t": "short",
+       "m": 3,
+       "items": [
+        "Differentiate between MNC, ISP and GIC.",
+        "Explain relative, mixed and absolute cell references with one example each.",
+        "What is BPO? Name any four BPO services.",
+        "Write the steps to create a chart in Calc."
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "topic": "Entrepreneurial Skills and Advanced Spreadsheet",
+   "tests": [
+    {
+     "n": 1,
+     "title": "Objective Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "An entrepreneur is best described as someone who ______ .",
+         [
+          "Works only for a salary",
+          "Starts a business and bears its risks",
+          "Manages government offices",
+          "Avoids new ideas"
+         ]
+        ],
+        [
+         "The word entrepreneur comes from the French word meaning ______ .",
+         [
+          "to sell",
+          "to undertake",
+          "to save",
+          "to manage"
+         ]
+        ],
+        [
+         "Which is a negative impact of entrepreneurship?",
+         [
+          "Job creation",
+          "Innovation",
+          "Environmental degradation",
+          "Economic growth"
+         ]
+        ],
+        [
+         "Which feature combines data from multiple ranges into one summary?",
+         [
+          "Goal Seek",
+          "Consolidate",
+          "Macro",
+          "Hyperlink"
+         ]
+        ],
+        [
+         "Which tool finds an input that produces a specified result?",
+         [
+          "Consolidate",
+          "Goal Seek",
+          "Group",
+          "Macro Recorder"
+         ]
+        ],
+        [
+         "Which is a valid macro name?",
+         [
+          "2ndFormat",
+          "Format Heading",
+          "Format_Heading",
+          "Format*Heading"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "tf",
+       "m": 1,
+       "items": [
+        "Entrepreneurs are born, not made.",
+        "A lot of money is always needed to start a business.",
+        "Before applying Subtotals, data should be sorted by the grouping field.",
+        "A macro procedure begins with Sub and ends with End Sub."
+       ]
+      },
+      {
+       "t": "fill",
+       "m": 1,
+       "items": [
+        "The career process of an entrepreneur is ____ , Survive and Grow.",
+        "A person who works for someone else for a salary is in ____ employment.",
+        "A named set of input values used to compare outcomes is a ____ .",
+        "The ____ function is selected by default in Consolidate.",
+        "The ____ key commonly runs a macro from the Basic IDE."
+       ],
+       "box": "Enter, Scenario, wage, Sum, F5"
+      },
+      {
+       "t": "match",
+       "m": 1,
+       "items": [
+        [
+         "Consolidate",
+         "Combines data from multiple ranges into one summary"
+        ],
+        [
+         "Goal Seek",
+         "Finds the input needed for a target result"
+        ],
+        [
+         "Scenario",
+         "A named set of input values"
+        ],
+        [
+         "Subtotals",
+         "Groups records by a category and calculates a summary"
+        ],
+        [
+         "Macro",
+         "Automates repeated tasks"
+        ]
+       ]
+      }
+     ],
+     "total": 20
+    },
+    {
+     "n": 2,
+     "title": "Mixed Test",
+     "time": "40 minutes",
+     "secs": [
+      {
+       "t": "mcq",
+       "m": 1,
+       "items": [
+        [
+         "What does $'Term 1'.C4 refer to?",
+         [
+          "Cell C4 on the worksheet Term 1",
+          "File C4",
+          "Column Term 1",
+          "Macro name"
+         ]
+        ],
+        [
+         "Which option creates collapsible outlines?",
+         [
+          "Group",
+          "Goal Seek",
+          "Scenario",
+          "Comment"
+         ]
+        ],
+        [
+         "A collection of modules is called a ______ .",
+         [
+          "Library",
+          "Cell",
+          "Range",
+          "Hyperlink"
+         ]
+        ],
+        [
+         "Which tool calculates results for a series of test inputs?",
+         [
+          "Multiple Operations",
+          "Compare Document",
+          "Track Changes",
+          "Hyperlink"
+         ]
+        ]
+       ]
+      },
+      {
+       "t": "one",
+       "m": 1,
+       "items": [
+        "Raj stays calm when an angry customer shouts at him. Which quality of an entrepreneur is shown?",
+        "Rehnuma checks her two employees' work for an hour every day. Which function is this?",
+        "Which is the first stage of an entrepreneur's career process?",
+        "Which menu path starts macro recording?"
+       ],
+       "note": "Answer in one or two words."
+      },
+      {
+       "t": "short",
+       "m": 3,
+       "items": [
+        "Define entrepreneur and entrepreneurship.",
+        "Differentiate between self-employment and wage employment.",
+        "Differentiate between Grouping and Subtotals.",
+        "What is a Macro? Mention two advantages and state three rules for naming a macro."
+       ]
+      }
+     ],
+     "total": 20
+    }
+   ]
+  }
+ ]
+};
+</script></head><body>
+<header><i class="a"></i><i class="b"></i><div><h1 id="ht">Information Technology Tests</h1><p>Choose your class, then choose a test. Solve it in your notebook.</p></div></header>
+<main><div class="pick" id="pick" role="group" aria-label="Choose your class"></div><div id="out"><p class="msg">Loading tests…</p></div></main>
+<footer id="ft"></footer>
+<script>
+var D,cls=0,tn=1,L='abcdefgh';
+function h(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function go(n,t){cls=n;tn=t||1;location.hash=n?'class-'+n+(t?'-test-'+t:''):'';draw()}
+function read(){var m=/class-(\d+)(?:-test-(\d+))?/.exec(location.hash);cls=m?+m[1]:0;tn=m&&m[2]?+m[2]:1}
+function draw(){
+ var p=document.getElementById('pick'),o=document.getElementById('out');p.textContent='';o.textContent='';
+ D.classes.forEach(function(c){var b=h('button','', 'Class '+c.n);b.setAttribute('aria-pressed',c.n===cls);b.onclick=function(){go(c.n)};p.appendChild(b)});
+ var c=D.classes.filter(function(x){return x.n===cls})[0];
+ if(!c){o.appendChild(h('p','msg','Select your class above to see your tests.'));return}
+ var t=c.tests.filter(function(x){return x.n===tn})[0]||c.tests[0];
+ var tabs=h('div','tabs');c.tests.forEach(function(x){var b=h('button','','Test '+x.n);b.setAttribute('aria-pressed',x.n===t.n);b.onclick=function(){go(c.n,x.n)};tabs.appendChild(b)});
+ var pr=h('button','pr','Print this test');pr.onclick=function(){window.print()};tabs.appendChild(pr);o.appendChild(tabs);
+ var pa=h('div','paper');pa.appendChild(h('h2','',D.school));pa.appendChild(h('div','sub',D.subject+' • Class '+c.n+' • '+c.topic));
+ var m=h('div','meta');[ 'Test '+t.n+': '+t.title,'Maximum Marks: '+t.total,'Time: '+t.time].forEach(function(x){m.appendChild(h('span','',x))});pa.appendChild(m);
+ var w=h('div','who');['Name:','Roll No.:','Date:'].forEach(function(x){w.appendChild(h('span','',x))});pa.appendChild(w);
+ var g=h('div','gi');g.appendChild(h('b','','General Instructions'));var ol=h('ol');D.general.forEach(function(x){ol.appendChild(h('li','',x))});g.appendChild(ol);pa.appendChild(g);
+ t.secs.forEach(function(s,i){
+  var d=h('div','sec'),hh=h('h3','','Section '+String.fromCharCode(65+i));hh.appendChild(h('em','','['+s.items.length+' × '+s.m+' = '+s.items.length*s.m+' marks]'));d.appendChild(hh);
+  d.appendChild(h('div','ins',s.note||D.instr[s.t]));
+  if(s.box){var bx=h('div','hint');s.box.split(',').forEach(function(x){bx.appendChild(h('span','',x.trim()))});d.appendChild(bx)}
+  if(s.t==='match'){var rs=s.items.map(function(x){return x[1]}),k=rs.slice().reverse();k.push(k.shift());
+   var g2=h('div','mt');g2.appendChild(h('b','k','Column A'));g2.appendChild(h('b','k','Column B'));
+   s.items.forEach(function(x,j){g2.appendChild(h('div','',(j+1)+'. '+x[0]));g2.appendChild(h('div','',L[j]+'. '+k[j]))});d.appendChild(g2)}
+  else s.items.forEach(function(x,j){var q=h('div','q');q.appendChild(h('b','',(j+1)+'.'));
+   if(s.t==='mcq'){q.appendChild(h('div','',x[0]));var oo=h('div','opt');x[1].forEach(function(y,z){oo.appendChild(h('span','',L[z]+'. '+y))});q.appendChild(oo)}
+   else q.appendChild(h('div','',x));d.appendChild(q)});
+  pa.appendChild(d)});
+ o.appendChild(pa);document.title='Class '+c.n+' Test '+t.n+' – '+D.subject}
+if(window.TESTS){D=window.TESTS;document.getElementById('ht').textContent=D.subject+' Class Tests';document.getElementById('ft').textContent=D.school;read();draw()}
+else document.getElementById('out').textContent='The file tests.js was not found. Upload tests.js in the same folder as index.html.';
+window.addEventListener('hashchange',function(){if(D){read();draw()}});
+</script></body></html>
